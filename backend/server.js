@@ -28,7 +28,7 @@ app.use('/api/todos',userRoute)
 
 
 const apiKey = process.env.API_KEY;
-console.log(apiKey)
+
 
 mongoose.connect(`mongodb+srv://cagan:${apiKey}@merncluster.gdqqpuw.mongodb.net/?retryWrites=true&w=majority&appName=MERNcluster`, {
   useNewUrlParser: true,
