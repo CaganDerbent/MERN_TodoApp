@@ -5,6 +5,8 @@ const userRoute = require("./routers/userRoute")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 
+require('dotenv').config();
+
 
 
 app.use(express.json())
@@ -21,26 +23,37 @@ userRoute.use(bodyParser.json());
 app.use('/api/todos',route)
 app.use('/api/todos',userRoute)
 
-//app.use(requestroute)
-//app.use(oauthroute)
 
 
 
 
+const apiKey = process.env.API_KEY;
+console.log(apiKey)
 
-
-
-
-mongoose.connect("mongodb+srv://cagan:cagan123@merncluster.gdqqpuw.mongodb.net/", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true })
-.then(()=>{
-    app.listen(3006,()=> console.log("Server running..."))
-    console.log("mongoDB connected.")
+mongoose.connect(`mongodb+srv://cagan:${apiKey}@merncluster.gdqqpuw.mongodb.net/?retryWrites=true&w=majority&appName=MERNcluster`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true 
 })
-.catch((err)=>{
-    console.log(err)
+
+.then(() => {
+  console.log("MongoDB Connected.");
+  app.listen(3031, () => {
+      console.log("Server Running...");
+  });
 })
+.catch((error) => {
+  console.error(error);
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
