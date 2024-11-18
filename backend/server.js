@@ -4,12 +4,16 @@ const route = require("./routers/route")
 const userRoute = require("./routers/userRoute")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
-
+const cors = require("cors")
 require('dotenv').config();
 
-
-
 app.use(express.json())
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "DELETE", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 //middleware
 app.use((req,res,next)=>{
@@ -24,9 +28,6 @@ app.use('/api/todos',route)
 app.use('/api/todos',userRoute)
 
 
-
-
-
 const apiKey = process.env.API_KEY;
 
 
@@ -37,7 +38,7 @@ mongoose.connect(`mongodb+srv://cagan:${apiKey}@merncluster.gdqqpuw.mongodb.net/
 
 .then(() => {
   console.log("MongoDB Connected.");
-  app.listen(3031, () => {
+  app.listen(3006, () => {
       console.log("Server Running...");
   });
 })

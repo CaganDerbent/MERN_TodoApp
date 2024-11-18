@@ -19,7 +19,7 @@ export const useLogin = ()=>{
 
         const info = {email,password}
 
-        const response = await fetch("/api/todos/users/login",{
+        const response = await fetch("http://localhost:3006/api/todos/users/login",{
             method:"POST",
             body:JSON.stringify(info),
             headers:{

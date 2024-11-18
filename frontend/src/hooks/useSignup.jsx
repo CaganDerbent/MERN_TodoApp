@@ -18,7 +18,7 @@ export const useSignup = () => {
 
         const info = { email, password };
 
-        const response = await fetch("/api/todos/users/register", {
+        const response = await fetch("http://localhost:3006/api/todos/users/register", {
             method: "POST",
             body: JSON.stringify(info),
             headers: {
